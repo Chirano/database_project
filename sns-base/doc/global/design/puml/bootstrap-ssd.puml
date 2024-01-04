@@ -1,0 +1,20 @@
+@startuml
+
+title Bootstrap (SSD)
+
+autonumber
+
+actor User
+participant ":System" as System
+
+activate User
+    User -> System : starts the application
+    activate System
+        System -> System : roles bootstrapper
+        System -> System : users bootstrapper
+        System -> System : menus bootstrapper
+        System --> User : success
+    deactivate System
+deactivate User
+
+@enduml

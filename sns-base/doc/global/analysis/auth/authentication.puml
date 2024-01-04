@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Role {
+name
+}
+
+@enduml
