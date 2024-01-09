@@ -24,7 +24,11 @@ public class Repositories {
     //Your code here
     VaccineTechRepository vaccineTechRepository = new VaccineTechRepository();
     VaccineTypeRepository vaccineTypeRepository = new VaccineTypeRepository();
+    VaccineRepository vaccineRepository = new VaccineRepository();
+    BrandRepository brandRepository = new BrandRepository();
 
     public VaccineTechRepository vaccineTechRepository() {return vaccineTechRepository;}
     public VaccineTypeRepository vaccineTypeRepository() {return vaccineTypeRepository;}
+    public VaccineRepository vaccineRepository() {return vaccineRepository;}
+    public BrandRepository brandRepository() {return brandRepository;}
 }

@@ -18,10 +18,15 @@ activate Administrator
 
     Administrator -> System : chooses one of the vaccine types
     activate System
-        System --> Administrator : requests the name and the brand
+        System --> Administrator : shows the manufaturers and requests to choose one
     deactivate System
 
-    Administrator -> System : specifies name and brand
+    Administrator -> System : chooses one of the manufacturers
+    activate System
+        System --> Administrator : validates and asks for confirmation
+    deactivate System
+
+    Administrator -> System : asks to define a name for the vaccine
     activate System
         System --> Administrator : validates and asks for confirmation
     deactivate System
