@@ -1,4 +1,7 @@
 package pt.org.upskill;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.auth.Email;
 import pt.org.upskill.auth.Password;

@@ -1,6 +1,8 @@
 package pt.org.upskill.repository;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
-import pt.org.upskill.auth.User;
 import pt.org.upskill.domain.Role;
 
 import java.util.ArrayList;

@@ -10,9 +10,6 @@ public class Email {
         this.address = address;
     }
 
-    protected Email() {
-    }
-
     private boolean validate(String email) {
         return email.contains("@");
     }

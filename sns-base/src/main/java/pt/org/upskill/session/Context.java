@@ -1,4 +1,7 @@
 package pt.org.upskill.session;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.auth.User;
 import pt.org.upskill.ui.menu.Drawable;

@@ -10,8 +10,6 @@ public class Password {
         this.password = pwd;
     }
 
-    private Password() { }
-
     private boolean validate(String pwd) {
         return true;
     }

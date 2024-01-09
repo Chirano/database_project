@@ -1,4 +1,7 @@
 package pt.org.upskill.repository;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 public class Repositories {
 

@@ -1,4 +1,7 @@
 package pt.org.upskill;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.session.Context;
 
@@ -9,13 +12,5 @@ public class Main {
         bootstrap.run();
 
         Context.getInstance().drawer().draw(Context.getInstance().mainMenu());
-        /*
-        try {
-            MainMenu menu = new MainMenu();
-            menu.run();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
     }
 }

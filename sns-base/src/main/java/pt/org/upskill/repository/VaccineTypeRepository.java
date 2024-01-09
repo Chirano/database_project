@@ -1,4 +1,7 @@
 package pt.org.upskill.repository;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.domain.VaccineType;

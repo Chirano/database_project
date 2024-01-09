@@ -1,4 +1,7 @@
 package pt.org.upskill.ui;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.controller.RoleController;
 import pt.org.upskill.controller.UserController;
@@ -16,7 +19,7 @@ public class CreateUserUI extends UI {
         System.out.println("-----------");
 
         try {
-            //Requests data (reference, ..., cost)
+            //Requests data
             String email = readLineFromConsole("Email: ");
             String password = readLineFromConsole("Password: ");
 

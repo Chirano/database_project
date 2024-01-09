@@ -1,4 +1,7 @@
 package pt.org.upskill.controller;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.auth.User;
 import pt.org.upskill.repository.Repositories;
@@ -7,8 +10,6 @@ import pt.org.upskill.session.Context;
 import pt.org.upskill.session.Session;
 
 public class LoginController {
-    //private final ApplicationSession applicationSession;
-
     private final UserRepository userRepository;
 
     public LoginController() {

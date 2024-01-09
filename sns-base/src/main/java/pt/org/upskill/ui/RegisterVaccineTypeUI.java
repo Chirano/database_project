@@ -1,10 +1,12 @@
 package pt.org.upskill.ui;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.controller.VaccineTechController;
 import pt.org.upskill.controller.VaccineTypeController;
 import pt.org.upskill.domain.VaccineTech;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static pt.org.upskill.ui.utils.Utils.readIntegerFromConsole;

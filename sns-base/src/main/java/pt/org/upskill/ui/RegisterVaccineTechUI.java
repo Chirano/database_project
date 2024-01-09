@@ -1,4 +1,7 @@
 package pt.org.upskill.ui;
+/**
+ * @author Nuno Castro anc@isep.ipp.pt
+ */
 
 import pt.org.upskill.controller.VaccineTechController;
 

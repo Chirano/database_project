@@ -8,9 +8,6 @@ public class Role {
         this.name = name;
     }
 
-    protected Role() {
-    }
-
     public String name() {
         return this.name;
     }
