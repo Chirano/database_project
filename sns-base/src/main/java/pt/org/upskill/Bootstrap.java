@@ -67,39 +67,39 @@ public class Bootstrap implements Runnable {
         menu = new Menu(Context.getInstance().mainMenu(), 9,"About", new AboutUI());
 
         //Admin
-        menu = new Menu(menuLogin, 1, "Register User", new CreateUserUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
+        //menu = new Menu(menuLogin, 1, "Register User", new CreateUserUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
         menu = new Menu(menuLogin, 2, "Register Vaccine Technology", new RegisterVaccineTechUI());
         menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
         menu = new Menu(menuLogin, 3, "Register Vaccine Type", new RegisterVaccineTypeUI());
         menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
-        menu = new Menu(menuLogin, 4, "Register Vaccine", new RegisterVaccineUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
-        menu = new Menu(menuLogin, 5, "Register Vaccination Center", new RegisterVaccinationCenterUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
-        menu = new Menu(menuLogin, 11, "List Employees With Role", new ListEmployeesWithRoleUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
+        //menu = new Menu(menuLogin, 4, "Register Vaccine", new RegisterVaccineUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
+        //menu = new Menu(menuLogin, 5, "Register Vaccination Center", new RegisterVaccinationCenterUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
+        //menu = new Menu(menuLogin, 11, "List Employees With Role", new ListEmployeesWithRoleUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
         menu = new Menu(menuLogin, 12, "List Vaccine Technologies", new ListVaccineTechsUI());
         menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
         menu = new Menu(menuLogin, 13, "List Vaccine Types", new ListVaccineTypesUI());
         menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
-        menu = new Menu(menuLogin, 14, "List Vaccines", new ListVaccinesUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
+        //menu = new Menu(menuLogin, 14, "List Vaccines", new ListVaccinesUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_ADMIN));
 
         //Receptionist
-        menu = new Menu(menuLogin, 1, "Register SNS User", new RegisterUserUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
-        menu = new Menu(menuLogin, 2, "Schedule Vaccination", new ScheduleVaccinationOnBehalfOfUserUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
-        menu = new Menu(menuLogin, 3, "Register SNS User Arrival", new RegisterUserArrivalUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
+        //menu = new Menu(menuLogin, 1, "Register SNS User", new RegisterUserUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
+        //menu = new Menu(menuLogin, 2, "Schedule Vaccination", new ScheduleVaccinationOnBehalfOfUserUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
+        //menu = new Menu(menuLogin, 3, "Register SNS User Arrival", new RegisterUserArrivalUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
 
         //SNS USer
-        menu = new Menu(menuLogin, 1, "Schedule Vaccination", new ScheduleVaccinationUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
+        //menu = new Menu(menuLogin, 1, "Schedule Vaccination", new ScheduleVaccinationUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_RECEPTIONIST));
 
         //Nurse
-        menu = new Menu(menuLogin, 1, "List User Waiting", new ListUsersWaitingUI());
-        menu.addPermission((Role) roleRepository.roleByName(ROLE_NURSE));
+        //menu = new Menu(menuLogin, 1, "List User Waiting", new ListUsersWaitingUI());
+        //menu.addPermission((Role) roleRepository.roleByName(ROLE_NURSE));
     }
 }

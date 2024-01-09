@@ -1,8 +1,5 @@
 package pt.org.upskill.repository;
 
-import pt.org.upskill.auth.User;
-import pt.org.upskill.domain.Role;
-
 public class Repositories {
 
     private static final Repositories instance = new Repositories();
@@ -20,4 +17,11 @@ public class Repositories {
     public UserRepository userRepository() {
         return userRepository;
     }
+
+    //Your code here
+    VaccineTechRepository vaccineTechRepository = new VaccineTechRepository();
+    VaccineTypeRepository vaccineTypeRepository = new VaccineTypeRepository();
+
+    public VaccineTechRepository vaccineTechRepository() {return vaccineTechRepository;}
+    public VaccineTypeRepository vaccineTypeRepository() {return vaccineTypeRepository;}
 }

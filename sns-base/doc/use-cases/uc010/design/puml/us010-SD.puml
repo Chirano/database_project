@@ -39,7 +39,7 @@ activate Administrator
 
     Administrator -> ui : fills requested data (code, short description and vaccine technology)
     activate ui
-        ui -> ctrl : createVaccineTech(code, shortDesc, vacTechName)
+        ui -> ctrl : createVaccineType(code, shortDesc, vacTechName)
         activate ctrl
             ctrl -> Repositories : getVaccineTypeRepository()
             activate Repositories
