@@ -29,24 +29,22 @@ public class RegisterVaccineUI extends UI {
             for (VaccineType vaccineType : vaccineTypeList) {
                 System.out.println(vaccineType.code() + " - " + vaccineType.shortDescription());
             }
-            String vaccineType = readLineFromConsole("Select a vaccine type: ");
+            String vaccineTypeCode = readLineFromConsole("Select a vaccine type: ");
 
             List<Brand> brandList = brandController.brandList();
             System.out.println("Brands");
             for (Brand brand : brandList) {
                 System.out.println(brand.name());
             }
-            String brand = readLineFromConsole("Select a brand: ");
+            String brandName = readLineFromConsole("Select a brand: ");
 
-
-            //String name = readLineFromConsole("Vaccine Technology Name: ");
-            //String description = readLineFromConsole("Vaccine Technology Description: ");
+            String vaccineName = readLineFromConsole("Vaccine Name: ");
 
             //Set data
-            //vaccineTechController.createVaccineTech(name, description);
+            vaccineController.createVaccine(vaccineTypeCode, brandName, vaccineName);
 
             //Confirm
-            //vaccineTechController.confirm();
+            vaccineController.confirm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

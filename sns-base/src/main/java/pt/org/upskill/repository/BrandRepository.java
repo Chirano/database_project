@@ -4,6 +4,7 @@ package pt.org.upskill.repository;
  */
 
 import pt.org.upskill.domain.Brand;
+import pt.org.upskill.domain.VaccineType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,4 +76,12 @@ public class BrandRepository implements Persistable {
         return brandList;
     }
 
+    public Brand getByName(String name) {
+        for (Brand brand : brandList) {
+            if (brand.name().equals(name)) {
+                return brand;
+            }
+        }
+        return null;
+    }
 }

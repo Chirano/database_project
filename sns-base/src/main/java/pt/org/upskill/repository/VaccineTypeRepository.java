@@ -9,6 +9,8 @@ import pt.org.upskill.domain.VaccineType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pt.org.upskill.ui.utils.Utils.readIntegerFromConsole;
+
 public class VaccineTypeRepository implements Persistable {
 
     private List<VaccineType> vaccineTypeList = new ArrayList<VaccineType>();
@@ -31,5 +33,14 @@ public class VaccineTypeRepository implements Persistable {
 
     public List<VaccineType> vaccineTypeList() {
         return vaccineTypeList;
+    }
+
+    public VaccineType getByCode(String code) {
+        for (VaccineType vaccineType : vaccineTypeList) {
+            if (vaccineType.code().equals(code)) {
+                return vaccineType;
+            }
+        }
+        return null;
     }
 }

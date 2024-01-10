@@ -3,7 +3,9 @@ package pt.org.upskill.repository;
  * @author Nuno Castro anc@isep.ipp.pt
  */
 
+import pt.org.upskill.domain.Brand;
 import pt.org.upskill.domain.Vaccine;
+import pt.org.upskill.domain.VaccineType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +44,11 @@ public class VaccineRepository implements Persistable {
     private Boolean validateDelete(Object object) {
         return true;
     }
-
-    public VaccineTech createVaccineTech(String name, String description) {
-        return new VaccineTech(name, description);
-    }
 */
+    public Vaccine createVaccine(String name, VaccineType vaccineType, Brand brand) {
+        return new Vaccine(name, vaccineType, brand);
+    }
+
     @Override
     public boolean save(Object object) {
         /*
