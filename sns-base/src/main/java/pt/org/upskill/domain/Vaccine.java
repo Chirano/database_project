@@ -16,4 +16,8 @@ public class Vaccine {
     public String name() {
         return name;
     }
+
+    public VaccineType vaccineType() {
+        return vaccineType;
+    }
 }

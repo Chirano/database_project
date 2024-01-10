@@ -16,6 +16,11 @@ public class BrandController {
         return brandRepository.brandList();
     }
 
+    Brand brand;
+
+    public void createBrand(String name) {
+        brand = brandRepository.createBrand(name);
+    }
     /*
     private VaccineTech vaccineTech;
 
@@ -30,11 +35,10 @@ public class BrandController {
     public String getVaccineTechName(int id) {
         return vaccineTechRepository.getById(id).name();
     }
-
+*/
     public boolean confirm() {
-        vaccineTechRepository.save(vaccineTech);
+        brandRepository.save(brand);
         return true;
     }
 
- */
 }

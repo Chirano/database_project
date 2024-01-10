@@ -35,7 +35,7 @@ public class BrandRepository implements Persistable {
         }
         return null;
     }
-
+*/
     private Boolean validateSave(Object object) {
         return true;
     }
@@ -44,32 +44,26 @@ public class BrandRepository implements Persistable {
         return true;
     }
 
-    public VaccineTech createVaccineTech(String name, String description) {
-        return new VaccineTech(name, description);
+    public Brand createBrand(String name) {
+        return new Brand(name);
     }
-*/
+
     @Override
     public boolean save(Object object) {
-        /*
         if (validateSave(object)) {
-            vaccineTechList.add((VaccineTech) object);
+            brandList.add((Brand) object);
             return true;
         }
-
-         */
         return false;
     }
 
     @Override
     public boolean delete(Object object) {
-        /*
         if (validateDelete(object)) {
-            vaccineTechList.remove(object);
+            brandList.remove(object);
             return true;
         }
-        */
         return false;
-
     }
 
     public List<Brand> brandList() {
