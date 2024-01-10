@@ -86,7 +86,7 @@ LogoutUI -up-|> UI
 CreateUserUI -up-|> UI
 MenuDrawer -down.|> Drawable
 Menu <.. MenuDrawer
-User "1" -left-> "1" Role
+User "*" -left-> "1" Role
 User "1" -up-> "1" Email
 User "1" -up-> "1" Password
 
