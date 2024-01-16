@@ -5,7 +5,7 @@ package pt.org.upskill.ui;
 
 import pt.org.upskill.controller.VaccineTechController;
 import pt.org.upskill.controller.VaccineTypeController;
-import pt.org.upskill.domain.VaccineType;
+import pt.org.upskill.dto.KeyValueDTO;
 
 import java.util.List;
 
@@ -20,10 +20,9 @@ public class ListVaccineTypesUI extends UI {
         System.out.println("-----------");
 
         try {
-            List<VaccineType> vaccineTypeList = vaccineTypeController.vaccineTypeList();
-            for (VaccineType vaccineType : vaccineTypeList) {
-                String vaccineTechName = vaccineTechController.getVaccineTechName(vaccineType.vaccineTech().id());
-                System.out.println(vaccineType.code() + " - " + vaccineType.shortDescription() + " - " + vaccineTechName);
+            List<KeyValueDTO<String>> dtoList = vaccineTypeController.dtoList();
+            for (KeyValueDTO<String> item : dtoList) {
+                System.out.println(item.key + " - " + item.value);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -4,6 +4,8 @@ package pt.org.upskill.ui;
  */
 
 import pt.org.upskill.controller.VaccineTechController;
+import pt.org.upskill.dto.DTOable;
+import pt.org.upskill.dto.VaccineTechDTO;
 
 import static pt.org.upskill.ui.utils.Utils.readLineFromConsole;
 
@@ -16,13 +18,19 @@ public class RegisterVaccineTechUI extends UI {
         System.out.println("-----------");
 
         try {
+            //System asks: name, description
             String name = readLineFromConsole("Vaccine Technology Name: ");
             String description = readLineFromConsole("Vaccine Technology Description: ");
 
-            //Set data
-            vaccineTechController.createVaccineTech(name, description);
+            //DTO creation
+            VaccineTechDTO dto = new VaccineTechDTO();
+            dto.name = name;
+            dto.description = description;
 
-            //Confirm
+            //Registration
+            vaccineTechController.register(dto);
+
+            //Confirmation
             vaccineTechController.confirm();
         } catch (Exception e) {
             System.out.println(e.getMessage());

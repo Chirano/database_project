@@ -1,6 +1,7 @@
 package pt.org.upskill.domain;
 
 import pt.org.upskill.auth.Email;
+import pt.org.upskill.dto.BrandDTO;
 
 public class Employee {
     private final Email email;
@@ -35,4 +36,5 @@ public class Employee {
     public boolean hasEmail(String email) {
         return this.email.address().equals(email);
     }
+
 }

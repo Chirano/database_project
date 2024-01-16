@@ -6,6 +6,8 @@ import pt.org.upskill.controller.BrandController;
 import pt.org.upskill.domain.Brand;
 import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.domain.VaccineType;
+import pt.org.upskill.dto.KeyValueDTO;
+import pt.org.upskill.dto.VaccineDTO;
 
 import java.util.List;
 
@@ -24,26 +26,33 @@ public class RegisterVaccineUI extends UI {
         System.out.println("-----------");
 
         try {
-            List<VaccineType> vaccineTypeList = vaccineTypeController.vaccineTypeList();
+            //System asks: vaccine type, brand, vaccine name
             System.out.println("Vaccine Types");
-            for (VaccineType vaccineType : vaccineTypeList) {
-                System.out.println(vaccineType.code() + " - " + vaccineType.shortDescription());
+            List<KeyValueDTO<String>> keyValueDTOList = vaccineTypeController.dtoList();
+            for (KeyValueDTO<String> item : keyValueDTOList) {
+                System.out.println(item.key + " - " + item.value);
             }
             String vaccineTypeCode = readLineFromConsole("Select a vaccine type: ");
 
-            List<Brand> brandList = brandController.brandList();
             System.out.println("Brands");
-            for (Brand brand : brandList) {
-                System.out.println(brand.name());
+            List<KeyValueDTO<String>> dtoList = brandController.dtoList();
+            for (KeyValueDTO<String> item : dtoList) {
+                System.out.println(item.key + " - " + item.value);
             }
             String brandName = readLineFromConsole("Select a brand: ");
 
             String vaccineName = readLineFromConsole("Vaccine Name: ");
 
-            //Set data
-            vaccineController.createVaccine(vaccineTypeCode, brandName, vaccineName);
+            //DTO
+            VaccineDTO dto = new VaccineDTO();
+            dto.name = vaccineName;
+            dto.vaccineTypeCode = vaccineTypeCode;
+            dto.brandName = brandName;
 
-            //Confirm
+            //Registration
+            vaccineController.register(dto);
+
+            //Confirmation
             vaccineController.confirm();
         } catch (Exception e) {
             System.out.println(e.getMessage());

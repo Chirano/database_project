@@ -16,7 +16,7 @@ public class LoginController {
         this.userRepository = Repositories.getInstance().userRepository();
     }
 
-    public boolean logIn(String email, String  password) throws Exception {
+    public boolean logIn(String email, String  password, int facilityId) throws Exception {
         User user =  userRepository.userByEmail(email);
         if  ((user != null) && (user.hasPassword(password))) {
             Session session = new Session(user);

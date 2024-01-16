@@ -1,10 +1,10 @@
 package pt.org.upskill.dto;
 
-public class VaccineDTO {
-    public String name;
-    public VaccineTypeDTO vaccineTypeDTO;
+import pt.org.upskill.domain.Vaccine;
 
-    public VaccineDTO() {
-        this.vaccineTypeDTO = new VaccineTypeDTO();
-    }
+public class VaccineDTO implements DTO {
+    public int id;
+    public String name;
+    public String vaccineTypeCode;
+    public String brandName;
 }

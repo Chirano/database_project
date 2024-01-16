@@ -3,20 +3,21 @@ package pt.org.upskill.repository;
  * @author Nuno Castro anc@isep.ipp.pt
  */
 
-import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.domain.VaccineType;
+import pt.org.upskill.dto.DTO;
+import pt.org.upskill.dto.VaccineTypeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static pt.org.upskill.ui.utils.Utils.readIntegerFromConsole;
 
 public class VaccineTypeRepository implements Persistable {
 
     private List<VaccineType> vaccineTypeList = new ArrayList<VaccineType>();
 
-    public VaccineType createVaccineType(String code, String shortDescription, VaccineTech vaccineTech) {
-        return new VaccineType(code, shortDescription, vaccineTech);
+    public VaccineType createVaccineType(DTO dto) {
+        VaccineTypeDTO vaccineTypeDTO = (VaccineTypeDTO) dto;
+        VaccineTechRepository vaccineTechRepository = Repositories.getInstance().vaccineTechRepository();
+        return new VaccineType(vaccineTypeDTO.code, vaccineTypeDTO.shortDescription, vaccineTechRepository.getById(vaccineTypeDTO.vaccineTechId));
     }
 
     @Override

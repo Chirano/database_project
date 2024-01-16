@@ -5,7 +5,8 @@ package pt.org.upskill.ui;
 
 import pt.org.upskill.controller.VaccineTechController;
 import pt.org.upskill.controller.VaccineTypeController;
-import pt.org.upskill.domain.VaccineTech;
+import pt.org.upskill.dto.KeyValueDTO;
+import pt.org.upskill.dto.VaccineTypeDTO;
 
 import java.util.List;
 
@@ -22,18 +23,24 @@ public class RegisterVaccineTypeUI extends UI {
         System.out.println("-----------");
 
         try {
+            //System asks: code, short description, vaccine technology
             String code = readLineFromConsole("Vaccine Type Code: ");
             String shortDescription = readLineFromConsole("Vaccine Type Short Description: ");
-
             System.out.println("Vaccine Technologies");
-            List<VaccineTech> vaccineTechList = vaccineTechController.vaccineTechList();
-            for (VaccineTech vaccineTech : vaccineTechList) {
-                System.out.println(vaccineTech.id() + " - " + vaccineTech.name());
+            List<KeyValueDTO<Integer>> keyValueDTOList = vaccineTechController.dtoList();
+            for (KeyValueDTO<Integer> item : keyValueDTOList) {
+                System.out.println(item.key + " - " + item.value);
             }
             int key = readIntegerFromConsole("Select a vaccine technology: ");
 
-            //data
-            vaccineTypeController.createVaccineType(code, shortDescription, key);
+            //DTO creation
+            VaccineTypeDTO dto = new VaccineTypeDTO();
+            dto.code = code;
+            dto.shortDescription = shortDescription;
+            dto.vaccineTechId = key;
+
+            //Registration
+            vaccineTypeController.register(dto);
 
             //confirmation
             vaccineTypeController.confirm();

@@ -4,6 +4,8 @@ package pt.org.upskill.repository;
  */
 
 import pt.org.upskill.domain.VaccineTech;
+import pt.org.upskill.dto.DTO;
+import pt.org.upskill.dto.VaccineTechDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +43,9 @@ public class VaccineTechRepository implements Persistable {
         return true;
     }
 
-    public VaccineTech createVaccineTech(String name, String description) {
-        return new VaccineTech(name, description);
+    public VaccineTech createVaccineTech(DTO dto) {
+        VaccineTechDTO vaccineTechDTO = (VaccineTechDTO) dto;
+        return new VaccineTech(nextId(), vaccineTechDTO.name, vaccineTechDTO.description);
     }
 
     @Override
@@ -65,4 +68,5 @@ public class VaccineTechRepository implements Persistable {
     public List<VaccineTech> vaccineTechList() {
         return vaccineTechList;
     }
+
 }

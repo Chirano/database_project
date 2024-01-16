@@ -6,7 +6,11 @@ package pt.org.upskill;
 import pt.org.upskill.auth.Email;
 import pt.org.upskill.auth.Password;
 import pt.org.upskill.auth.User;
+import pt.org.upskill.domain.Address;
+import pt.org.upskill.domain.Facility;
+import pt.org.upskill.domain.Phone;
 import pt.org.upskill.domain.Role;
+import pt.org.upskill.repository.FacilityRepository;
 import pt.org.upskill.repository.Repositories;
 import pt.org.upskill.repository.RoleRepository;
 import pt.org.upskill.repository.UserRepository;
@@ -15,6 +19,9 @@ import pt.org.upskill.ui.*;
 import pt.org.upskill.ui.menu.Drawable;
 import pt.org.upskill.ui.menu.Menu;
 import pt.org.upskill.ui.menu.MenuDrawer;
+
+import java.sql.Time;
+import java.time.LocalTime;
 
 import static pt.org.upskill.repository.RoleRepository.*;
 
@@ -25,6 +32,7 @@ public class Bootstrap implements Runnable {
         addRoles();
         addUsers();
         addMenus();
+        addFacilities();
     }
 
     private void addRoles() {
@@ -47,6 +55,16 @@ public class Bootstrap implements Runnable {
             userRepository.add(new User("nur", roleRepository.roleByName(ROLE_NURSE), new Email("nurse@upskill.pt"), new Password("nurse")));
             userRepository.add(new User("rec", roleRepository.roleByName(ROLE_RECEPTIONIST), new Email("receptionist@upskill.pt"), new Password("receptionist")));
             userRepository.add(new User("usr", roleRepository.roleByName(ROLE_SNSUSER), new Email("snsuser@upskill.pt"), new Password("snsuser")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addFacilities() {
+        FacilityRepository facilityRepository = Repositories.getInstance().facilityRepository();
+
+        try {
+            facilityRepository.save(new Facility("Centro de Saúde de Amarante", new Address("Rua X", "4600-011", "Amarante"), new Phone("255 123 456"), new Email("csa@csa.pt"), null, null, LocalTime.of(9,0), LocalTime.of(19,30), 120));
         } catch (Exception e) {
             e.printStackTrace();
         }
