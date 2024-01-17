@@ -6,6 +6,7 @@ import pt.org.upskill.dto.KeyValueDTO;
 
 import java.util.List;
 
+import static pt.org.upskill.ui.utils.UITools.showKeyValueList;
 import static pt.org.upskill.ui.utils.Utils.*;
 
 public class LoginUI extends UI {
@@ -24,11 +25,7 @@ public class LoginUI extends UI {
         String email = readLineFromConsole("Email: ");
         String password = readLineFromConsole("Password: ");
 
-        System.out.println("Facilities");
-        List<KeyValueDTO<Integer>> dtoList = new FacilityController().dtoList();
-        for (KeyValueDTO<Integer> item : dtoList) {
-            System.out.println(item.key + " - " + item.value);
-        }
+        showKeyValueList("Facilities", new FacilityController().keyValueDTOList());
         int key = readIntegerFromConsole("Select a facility: ");
 
         try {

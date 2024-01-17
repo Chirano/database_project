@@ -4,7 +4,6 @@ package pt.org.upskill.ui;
  */
 
 import pt.org.upskill.controller.VaccineTechController;
-import pt.org.upskill.dto.DTOable;
 import pt.org.upskill.dto.VaccineTechDTO;
 
 import static pt.org.upskill.ui.utils.Utils.readLineFromConsole;
@@ -31,7 +30,7 @@ public class RegisterVaccineTechUI extends UI {
             vaccineTechController.register(dto);
 
             //Confirmation
-            vaccineTechController.confirm();
+            vaccineTechController.save();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

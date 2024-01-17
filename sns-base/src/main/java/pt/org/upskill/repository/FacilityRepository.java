@@ -5,7 +5,9 @@ package pt.org.upskill.repository;
 
 import pt.org.upskill.auth.Email;
 import pt.org.upskill.domain.*;
+import pt.org.upskill.dto.FacilityDTO;
 import pt.org.upskill.dto.KeyValueDTO;
+import pt.org.upskill.dto.VaccineTechDTO;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -70,4 +72,12 @@ public class FacilityRepository implements Persistable {
         return facilityList;
     }
 
+    public List<KeyValueDTO> keyValueDTOList() {
+        List<KeyValueDTO> dtoList = new ArrayList<>();
+        for (Facility item : facilityList()) {
+            FacilityDTO dto = item.toDTO();
+            dtoList.add(new KeyValueDTO(dto.id.toString(), dto.name));
+        }
+        return dtoList;
+    }
 }

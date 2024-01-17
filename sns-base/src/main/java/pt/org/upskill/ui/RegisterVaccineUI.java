@@ -1,24 +1,15 @@
 package pt.org.upskill.ui;
 
-import pt.org.upskill.controller.VaccineController;
-import pt.org.upskill.controller.VaccineTypeController;
 import pt.org.upskill.controller.BrandController;
-import pt.org.upskill.domain.Brand;
-import pt.org.upskill.domain.VaccineTech;
-import pt.org.upskill.domain.VaccineType;
-import pt.org.upskill.dto.KeyValueDTO;
+import pt.org.upskill.controller.VaccineController;
 import pt.org.upskill.dto.VaccineDTO;
 
-import java.util.List;
-
-import static pt.org.upskill.ui.utils.Utils.readIntegerFromConsole;
 import static pt.org.upskill.ui.utils.Utils.readLineFromConsole;
+import static pt.org.upskill.ui.utils.UITools.showKeyValueList;
 
 public class RegisterVaccineUI extends UI {
 
     private final VaccineController vaccineController = new VaccineController();
-    private final VaccineTypeController vaccineTypeController = new VaccineTypeController();
-    private final BrandController brandController = new BrandController();
 
     public void run() {
         System.out.println("");
@@ -27,18 +18,10 @@ public class RegisterVaccineUI extends UI {
 
         try {
             //System asks: vaccine type, brand, vaccine name
-            System.out.println("Vaccine Types");
-            List<KeyValueDTO<String>> keyValueDTOList = vaccineTypeController.dtoList();
-            for (KeyValueDTO<String> item : keyValueDTOList) {
-                System.out.println(item.key + " - " + item.value);
-            }
+            showKeyValueList("Vaccine Types", new VaccineController().keyValueDTOList());
             String vaccineTypeCode = readLineFromConsole("Select a vaccine type: ");
 
-            System.out.println("Brands");
-            List<KeyValueDTO<String>> dtoList = brandController.dtoList();
-            for (KeyValueDTO<String> item : dtoList) {
-                System.out.println(item.key + " - " + item.value);
-            }
+            showKeyValueList("Brands", new BrandController().keyValueDTOList());
             String brandName = readLineFromConsole("Select a brand: ");
 
             String vaccineName = readLineFromConsole("Vaccine Name: ");
@@ -53,7 +36,7 @@ public class RegisterVaccineUI extends UI {
             vaccineController.register(dto);
 
             //Confirmation
-            vaccineController.confirm();
+            vaccineController.save();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

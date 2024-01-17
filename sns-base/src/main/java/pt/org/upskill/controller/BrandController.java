@@ -4,7 +4,6 @@ package pt.org.upskill.controller;
  */
 
 import pt.org.upskill.domain.Brand;
-import pt.org.upskill.dto.DTOlists;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.repository.Repositories;
 import pt.org.upskill.repository.BrandRepository;
@@ -29,7 +28,7 @@ public class BrandController {
         return true;
     }
 
-    public List<KeyValueDTO<String>> dtoList() {
-        return new DTOlists().brandDTOList();
+    public List<KeyValueDTO> keyValueDTOList() {
+        return brandRepository.keyValueDTOList();
     }
 }

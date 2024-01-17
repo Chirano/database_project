@@ -20,11 +20,9 @@ public class VaccineTechController implements UIable{
         vaccineTech = vaccineTechRepository.createVaccineTech(dto);
     }
 
-    public boolean confirm() {
+    public boolean save() {
         return vaccineTechRepository.save(vaccineTech);
     }
 
-    public List<KeyValueDTO<Integer>> dtoList() {
-        return new DTOlists().vaccineTechDTOList();
-    }
+    public List<KeyValueDTO> keyValueDTOList() { return vaccineTechRepository.keyValueDTOList(); }
 }

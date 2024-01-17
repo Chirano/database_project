@@ -5,6 +5,7 @@ package pt.org.upskill.repository;
 
 import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.dto.DTO;
+import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.dto.VaccineTechDTO;
 
 import java.util.ArrayList;
@@ -69,4 +70,12 @@ public class VaccineTechRepository implements Persistable {
         return vaccineTechList;
     }
 
+    public List<KeyValueDTO> keyValueDTOList() {
+        List<KeyValueDTO> dtoList = new ArrayList<>();
+        for (VaccineTech item : vaccineTechList()) {
+            VaccineTechDTO dto = item.toDTO();
+            dtoList.add(new KeyValueDTO(dto.id.toString(), dto.name));
+        }
+        return dtoList;
+    }
 }

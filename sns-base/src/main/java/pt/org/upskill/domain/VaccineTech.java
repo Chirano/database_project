@@ -8,7 +8,7 @@ import pt.org.upskill.repository.Repositories;
 import pt.org.upskill.repository.VaccineTechRepository;
 
 public class VaccineTech implements DTOable {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
 

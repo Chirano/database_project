@@ -4,7 +4,8 @@ package pt.org.upskill.repository;
  */
 
 import pt.org.upskill.domain.Brand;
-import pt.org.upskill.domain.VaccineType;
+import pt.org.upskill.dto.BrandDTO;
+import pt.org.upskill.dto.KeyValueDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,35 +15,12 @@ public class BrandRepository implements Persistable {
     public BrandRepository() {}
 
     private List<Brand> brandList = new ArrayList<Brand>();
-/*
-    public int nextId() {
-        int maxId = 0;
-        for (VaccineTech vaccineTech : vaccineTechList) {
-            if (vaccineTech.id() > maxId) {
-                maxId = vaccineTech.id();
-            };
-        }
-        return maxId+1;
-    }
 
-
-
-    public VaccineTech getById(int id) {
-        for (VaccineTech vaccineTech : vaccineTechList) {
-            if (vaccineTech.id() == id) {
-                return vaccineTech;
-            };
-        }
-        return null;
-    }
-*/
-    private Boolean validateSave(Object object) {
+    private boolean validateSave(Object object) {
         return true;
     }
 
-    private Boolean validateDelete(Object object) {
-        return true;
-    }
+    public boolean validateDelete(Object object) { return true; }
 
     public Brand createBrand(String name) {
         return new Brand(name);
@@ -70,6 +48,14 @@ public class BrandRepository implements Persistable {
         return brandList;
     }
 
+    public List<KeyValueDTO> keyValueDTOList() {
+        List<KeyValueDTO> dtoList = new ArrayList<>();
+        for (Brand item : brandList()) {
+            BrandDTO dto = item.toDTO();
+            dtoList.add(new KeyValueDTO(dto.name, ""));
+        }
+        return dtoList;
+    }
     public Brand getByName(String name) {
         for (Brand brand : brandList) {
             if (brand.name().equals(name)) {

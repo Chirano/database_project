@@ -5,7 +5,6 @@ package pt.org.upskill.controller;
 
 import pt.org.upskill.domain.Vaccine;
 import pt.org.upskill.dto.DTO;
-import pt.org.upskill.dto.DTOlists;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.repository.Repositories;
 import pt.org.upskill.repository.VaccineRepository;
@@ -22,11 +21,10 @@ public class VaccineController implements UIable {
         vaccine = vaccineRepository.createVaccine(dto);
     }
 
-    public boolean confirm() {
+    public boolean save() {
         return vaccineRepository.save(vaccine);
     }
 
-    public List<KeyValueDTO<Integer>> dtoList() {
-        return new DTOlists().vaccineDTOList();
-    }
+    public List<KeyValueDTO> keyValueDTOList() { return vaccineRepository.keyValueDTOList(); }
+
 }

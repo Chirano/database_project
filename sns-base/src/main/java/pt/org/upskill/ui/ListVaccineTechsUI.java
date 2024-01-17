@@ -4,25 +4,16 @@ package pt.org.upskill.ui;
  */
 
 import pt.org.upskill.controller.VaccineTechController;
-import pt.org.upskill.dto.KeyValueDTO;
 
-import java.util.List;
+import static pt.org.upskill.ui.utils.UITools.showKeyValueList;
 
 public class ListVaccineTechsUI extends UI {
-    private final VaccineTechController vaccineTechController = new VaccineTechController();
-
     public void run() {
         System.out.println("");
         System.out.println("LIST VACCINE TECHNOLOGIES");
         System.out.println("-----------");
 
-        try {
-            List<KeyValueDTO<Integer>> dtoList = vaccineTechController.dtoList();
-            for (KeyValueDTO<Integer> item : dtoList) {
-                System.out.println(item.key + " - " + item.value);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        showKeyValueList("", new VaccineTechController().keyValueDTOList());
+
     }
 }
