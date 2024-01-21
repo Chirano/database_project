@@ -5,6 +5,7 @@ package pt.org.upskill.repository;
 
 import pt.org.upskill.domain.Brand;
 import pt.org.upskill.dto.BrandDTO;
+import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
 
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public class BrandRepository implements Persistable {
 
     public boolean validateDelete(Object object) { return true; }
 
-    public Brand createBrand(String name) {
-        return new Brand(name);
+    public Brand createBrand(DTO dto) {
+        BrandDTO brandDTO = (BrandDTO) dto;
+        return new Brand(brandDTO.name);
     }
 
     @Override

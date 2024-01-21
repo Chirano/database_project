@@ -15,7 +15,6 @@ public class VaccineTechController implements UIable{
 
     private VaccineTech vaccineTech;
 
-    @Override
     public void register(DTO dto) {
         vaccineTech = vaccineTechRepository.createVaccineTech(dto);
     }

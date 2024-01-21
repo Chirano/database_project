@@ -4,6 +4,7 @@ package pt.org.upskill.ui;
  */
 
 import pt.org.upskill.controller.BrandController;
+import pt.org.upskill.dto.BrandDTO;
 
 import static pt.org.upskill.ui.utils.Utils.readLineFromConsole;
 
@@ -18,11 +19,15 @@ public class RegisterBrandUI extends UI {
         try {
             String name = readLineFromConsole("Brand Name: ");
 
+            //DTO
+            BrandDTO dto = new BrandDTO();
+            dto.name = name;
+
             //Set data
-            brandController.createBrand(name);
+            brandController.register(dto);
 
             //Confirm
-            brandController.confirm();
+            brandController.save();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -5,9 +5,7 @@ package pt.org.upskill.repository;
 
 import pt.org.upskill.auth.Email;
 import pt.org.upskill.domain.*;
-import pt.org.upskill.dto.FacilityDTO;
-import pt.org.upskill.dto.KeyValueDTO;
-import pt.org.upskill.dto.VaccineTechDTO;
+import pt.org.upskill.dto.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -46,8 +44,15 @@ public class FacilityRepository implements Persistable {
         return true;
     }
 
-    public Facility createFacility(String name, Address address, Phone phone, Email email, Phone fax, Website website, LocalTime openingHour, LocalTime closingHour, int maxVaccinesPerHour) {
-        return new Facility(name, address, phone, email, fax, website, openingHour, closingHour, maxVaccinesPerHour);
+    public Facility createFacility(DTO dto) throws Exception {
+        FacilityDTO facilityDTO = (FacilityDTO) dto;
+        return new Facility(facilityDTO.name,
+                new Address(facilityDTO.addressDTO.streetName, facilityDTO.addressDTO.postalCode, facilityDTO.addressDTO.cityName),
+                new Phone(facilityDTO.phoneDTO.phoneNumber),
+                new Email(facilityDTO.emailDTO.address),
+                new Phone(facilityDTO.faxDTO.phoneNumber),
+                new Website(facilityDTO.websiteDTO.address),
+                facilityDTO.openingHour, facilityDTO.closingHour, facilityDTO.maxVaccinesPerHour);
     }
 
     @Override

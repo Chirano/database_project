@@ -4,28 +4,26 @@ package pt.org.upskill.controller;
  */
 
 import pt.org.upskill.domain.Brand;
+import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.repository.Repositories;
 import pt.org.upskill.repository.BrandRepository;
 
 import java.util.List;
 
-public class BrandController {
+public class BrandController implements UIable {
     BrandRepository brandRepository = Repositories.getInstance().brandRepository();
-
-    public List<Brand> brandList() {
-        return brandRepository.brandList();
-    }
 
     Brand brand;
 
-    public void createBrand(String name) {
-        brand = brandRepository.createBrand(name);
+    @Override
+    public void register(DTO dto) {
+        brand = brandRepository.createBrand(dto);
     }
 
-    public boolean confirm() {
-        brandRepository.save(brand);
-        return true;
+    @Override
+    public boolean save() {
+        return brandRepository.save(brand);
     }
 
     public List<KeyValueDTO> keyValueDTOList() {
