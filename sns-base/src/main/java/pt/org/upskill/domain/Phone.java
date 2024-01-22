@@ -3,7 +3,7 @@ package pt.org.upskill.domain;
 import pt.org.upskill.dto.DTOable;
 import pt.org.upskill.dto.PhoneDTO;
 
-public class Phone implements DTOable {
+public class Phone implements DTOable<PhoneDTO> {
     private String phoneNumber;
 
     public String phoneNumber() {
@@ -14,7 +14,7 @@ public class Phone implements DTOable {
     }
 
     @Override
-    public Object toDTO() {
+    public PhoneDTO toDTO() {
         return new PhoneDTO(phoneNumber());
     }
 }

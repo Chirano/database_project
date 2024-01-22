@@ -2,7 +2,7 @@ package pt.org.upskill.domain;
 
 import pt.org.upskill.dto.*;
 
-public class Vaccine implements DTOable {
+public class Vaccine implements DTOable<VaccineDTO> {
     private Integer id;
     private String name;
     private VaccineType vaccineType;

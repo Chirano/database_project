@@ -3,7 +3,7 @@ package pt.org.upskill.domain;
 import pt.org.upskill.dto.DTOable;
 import pt.org.upskill.dto.WebsiteDTO;
 
-public class Website implements DTOable {
+public class Website implements DTOable<WebsiteDTO> {
     private String address;
 
     public String address() {
@@ -15,7 +15,7 @@ public class Website implements DTOable {
     }
 
     @Override
-    public Object toDTO() {
+    public WebsiteDTO toDTO() {
         return new WebsiteDTO(address());
     }
 }

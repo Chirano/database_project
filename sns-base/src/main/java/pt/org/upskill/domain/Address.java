@@ -3,7 +3,7 @@ package pt.org.upskill.domain;
 import pt.org.upskill.dto.AddressDTO;
 import pt.org.upskill.dto.DTOable;
 
-public class Address implements DTOable {
+public class Address implements DTOable<AddressDTO> {
     private String streetName;
     private String postalCode;
     private String cityName;
@@ -25,7 +25,7 @@ public class Address implements DTOable {
     }
 
     @Override
-    public Object toDTO() {
+    public AddressDTO toDTO() {
         AddressDTO.Builder builder = new AddressDTO.Builder();
         if (streetName() != null) {
             builder.withStreetName(streetName());
