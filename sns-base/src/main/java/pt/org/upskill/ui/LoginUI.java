@@ -26,10 +26,16 @@ public class LoginUI extends UI {
         String password = readLineFromConsole("Password: ");
 
         showKeyValueList("Facilities", new FacilityController().keyValueDTOList());
-        int key = readIntegerFromConsole("Select a facility: ");
+        String key = readLineFromConsole("Select a facility (enter to continue without): ");
 
         try {
-            if (loginController.logIn(email, password, key)) {
+            Integer facilityId;
+            if (key.isBlank()) {
+                facilityId = null;
+            } else {
+                facilityId = Integer.parseInt(key);
+            }
+            if (loginController.logIn(email, password, facilityId)) {
                 System.out.print(email + " logged in");
             } else {
                 System.out.print("Invalid email/password");

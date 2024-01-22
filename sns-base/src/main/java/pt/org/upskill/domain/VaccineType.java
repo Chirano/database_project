@@ -30,11 +30,7 @@ public class VaccineType implements DTOable {
         VaccineTypeDTO dto = new VaccineTypeDTO.Builder()
                 .withCode(code())
                 .withShortDescription(shortDescription())
-                .withVaccineTechDTO(new VaccineTechDTO.Builder()
-                        .withId(vaccineTech().id())
-                        .withName(vaccineTech().name())
-                        .withDescription(vaccineTech().description())
-                        .build())
+                .withVaccineTechDTO(vaccineTech().toDTO())
                 .build();
         return dto;
     }

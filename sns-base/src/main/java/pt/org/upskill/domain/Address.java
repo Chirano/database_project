@@ -1,7 +1,6 @@
 package pt.org.upskill.domain;
 
 import pt.org.upskill.dto.AddressDTO;
-import pt.org.upskill.dto.BrandDTO;
 import pt.org.upskill.dto.DTOable;
 
 public class Address implements DTOable {
@@ -27,11 +26,16 @@ public class Address implements DTOable {
 
     @Override
     public Object toDTO() {
-        AddressDTO dto = new AddressDTO.Builder()
-                .withStreetName(streetName())
-                .withPostalCode(postalCode())
-                .withCityName(cityName())
-                .build();
-        return dto;
+        AddressDTO.Builder builder = new AddressDTO.Builder();
+        if (streetName() != null) {
+            builder.withStreetName(streetName());
+        }
+        if (postalCode() != null) {
+            builder.withPostalCode(postalCode());
+        }
+        if (cityName() != null) {
+            builder.withCityName(cityName());
+        }
+        return builder.build();
     }
 }

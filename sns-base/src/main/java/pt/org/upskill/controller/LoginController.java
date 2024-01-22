@@ -16,10 +16,15 @@ public class LoginController {
         this.userRepository = Repositories.getInstance().userRepository();
     }
 
-    public boolean logIn(String email, String  password, int facilityId) throws Exception {
+    public boolean logIn(String email, String  password, Integer facilityId) throws Exception {
         User user =  userRepository.userByEmail(email);
         if  ((user != null) && (user.hasPassword(password))) {
-            Session session = new Session(user);
+            Session session;
+            if (facilityId != null) {
+                session = new Session(user, Repositories.getInstance().facilityRepository().getById(facilityId));
+            } else {
+                session = new Session(user);
+            }
             Context.getInstance().setSession(session);
             return true;
         }

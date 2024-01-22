@@ -40,18 +40,8 @@ public class Vaccine implements DTOable {
         VaccineDTO dto = new VaccineDTO.Builder()
                 .withId(id())
                 .withName(name())
-                .withVaccineTypeDTO(new VaccineTypeDTO.Builder()
-                        .withCode(vaccineType().code())
-                        .withShortDescription(vaccineType().shortDescription())
-                        .withVaccineTechDTO(new VaccineTechDTO.Builder()
-                                .withId(vaccineType().vaccineTech().id())
-                                .withName(vaccineType().vaccineTech().name())
-                                .withDescription(vaccineType().vaccineTech().description())
-                                .build())
-                        .build())
-                .withBrandDTO(new BrandDTO.Builder()
-                        .withName(brand().name())
-                        .build())
+                .withVaccineTypeDTO(vaccineType().toDTO())
+                .withBrandDTO(brand().toDTO())
                 .build();
         return dto;
     }

@@ -2,6 +2,7 @@ package pt.org.upskill.ui;
 
 import pt.org.upskill.controller.BrandController;
 import pt.org.upskill.controller.VaccineController;
+import pt.org.upskill.controller.VaccineTypeController;
 import pt.org.upskill.dto.BrandDTO;
 import pt.org.upskill.dto.VaccineDTO;
 import pt.org.upskill.dto.VaccineTypeDTO;
@@ -20,7 +21,7 @@ public class RegisterVaccineUI extends UI {
 
         try {
             //System asks: vaccine type, brand, vaccine name
-            showKeyValueList("Vaccine Types", new VaccineController().keyValueDTOList());
+            showKeyValueList("Vaccine Types", new VaccineTypeController().keyValueDTOList());
             String vaccineTypeCode = readLineFromConsole("Select a vaccine type: ");
 
             showKeyValueList("Brands", new BrandController().keyValueDTOList());
