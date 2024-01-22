@@ -14,16 +14,19 @@ import java.util.List;
 
 public class VaccineTypeController implements UIable {
     VaccineTypeRepository vaccineTypeRepository = Repositories.getInstance().vaccineTypeRepository();
+
     private VaccineType vaccineType;
 
+    @Override
     public void register(DTO dto) {
         vaccineType = vaccineTypeRepository.createVaccineType(dto);
     }
 
+    @Override
     public boolean save() {
         return vaccineTypeRepository.save(vaccineType);
     }
 
+    @Override
     public List<KeyValueDTO> keyValueDTOList() { return vaccineTypeRepository.keyValueDTOList(); }
-
 }

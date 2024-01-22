@@ -7,7 +7,6 @@ import pt.org.upskill.auth.Email;
 import pt.org.upskill.domain.*;
 import pt.org.upskill.dto.*;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,29 +35,37 @@ public class FacilityRepository implements Persistable {
         return null;
     }
 
-    private Boolean validateSave(Object object) {
+    private Boolean validateSave(Facility facility) {
         return true;
     }
 
-    private Boolean validateDelete(Object object) {
+    private Boolean validateDelete(Facility facility) {
         return true;
     }
 
     public Facility createFacility(DTO dto) throws Exception {
         FacilityDTO facilityDTO = (FacilityDTO) dto;
-        return new Facility(facilityDTO.name,
-                new Address(facilityDTO.addressDTO.streetName, facilityDTO.addressDTO.postalCode, facilityDTO.addressDTO.cityName),
-                new Phone(facilityDTO.phoneDTO.phoneNumber),
-                new Email(facilityDTO.emailDTO.address),
-                new Phone(facilityDTO.faxDTO.phoneNumber),
-                new Website(facilityDTO.websiteDTO.address),
-                facilityDTO.openingHour, facilityDTO.closingHour, facilityDTO.maxVaccinesPerHour);
+        return new Facility.Builder()
+                .withName(facilityDTO.name())
+                .withAddress(new Address(
+                        facilityDTO.addressDTO().streetName(),
+                        facilityDTO.addressDTO().postalCode(),
+                        facilityDTO.addressDTO().cityName()))
+                .withPhone(new Phone(facilityDTO.phoneDTO().phoneNumber()))
+                .withEmail(new Email(facilityDTO.emailDTO().address()))
+                .withFax(new Phone(facilityDTO.faxDTO().phoneNumber()))
+                .withWebsite(new Website(facilityDTO.websiteDTO().address()))
+                .withOpeningHour(facilityDTO.openingHour())
+                .withClosingingHour(facilityDTO.closingHour())
+                .withMaxVaccinesPerHour(facilityDTO.maxVaccinesPerHour())
+                .build();
     }
 
     @Override
     public boolean save(Object object) {
-        if (validateSave(object)) {
-            facilityList.add((Facility) object);
+        Facility facility = (Facility) object;
+        if (validateSave(facility)) {
+            facilityList.add(facility);
             return true;
         }
         return false;
@@ -66,8 +73,9 @@ public class FacilityRepository implements Persistable {
 
     @Override
     public boolean delete(Object object) {
-        if (validateDelete(object)) {
-            facilityList.remove(object);
+        Facility facility = (Facility) object;
+        if (validateDelete(facility)) {
+            facilityList.remove(facility);
             return true;
         }
         return false;
@@ -81,7 +89,7 @@ public class FacilityRepository implements Persistable {
         List<KeyValueDTO> dtoList = new ArrayList<>();
         for (Facility item : facilityList()) {
             FacilityDTO dto = item.toDTO();
-            dtoList.add(new KeyValueDTO(dto.id.toString(), dto.name));
+            dtoList.add(new KeyValueDTO(dto.id().toString(), dto.name()));
         }
         return dtoList;
     }

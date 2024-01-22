@@ -20,8 +20,9 @@ public class RegisterBrandUI extends UI {
             String name = readLineFromConsole("Brand Name: ");
 
             //DTO
-            BrandDTO dto = new BrandDTO();
-            dto.name = name;
+            BrandDTO dto = new BrandDTO.Builder()
+                    .withName(name)
+                    .build();
 
             //Set data
             brandController.register(dto);

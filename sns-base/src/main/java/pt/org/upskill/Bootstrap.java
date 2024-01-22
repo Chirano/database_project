@@ -64,7 +64,17 @@ public class Bootstrap implements Runnable {
         FacilityRepository facilityRepository = Repositories.getInstance().facilityRepository();
 
         try {
-            facilityRepository.save(new Facility("Centro de Saúde de Amarante", new Address("Rua X", "4600-011", "Amarante"), new Phone("255 123 456"), new Email("csa@csa.pt"), null, null, LocalTime.of(9,0), LocalTime.of(19,30), 120));
+            Facility facility = new Facility.Builder()
+                    .withId(1)
+                    .withName("Centro de Saúde de Amarante")
+                    .withAddress(new Address("Rua X", "4600-011", "Amarante"))
+                    .withPhone(new Phone("255 123 456"))
+                    .withEmail(new Email("csa@csa.pt"))
+                    .withOpeningHour(LocalTime.of(9,0))
+                    .withClosingingHour(LocalTime.of(19,30))
+                    .withMaxVaccinesPerHour(120)
+                    .build();
+            facilityRepository.save(facility);
         } catch (Exception e) {
             e.printStackTrace();
         }

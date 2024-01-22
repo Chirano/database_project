@@ -26,6 +26,7 @@ public class BrandController implements UIable {
         return brandRepository.save(brand);
     }
 
+    @Override
     public List<KeyValueDTO> keyValueDTOList() {
         return brandRepository.keyValueDTOList();
     }

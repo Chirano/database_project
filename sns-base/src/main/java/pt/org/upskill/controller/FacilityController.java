@@ -8,7 +8,6 @@ import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.repository.FacilityRepository;
 import pt.org.upskill.repository.Repositories;
-import pt.org.upskill.repository.VaccineRepository;
 
 import java.util.List;
 

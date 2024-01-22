@@ -5,6 +5,7 @@ package pt.org.upskill.ui;
 
 import pt.org.upskill.controller.VaccineTechController;
 import pt.org.upskill.controller.VaccineTypeController;
+import pt.org.upskill.dto.VaccineTechDTO;
 import pt.org.upskill.dto.VaccineTypeDTO;
 
 import static pt.org.upskill.ui.utils.UITools.showKeyValueList;
@@ -27,10 +28,13 @@ public class RegisterVaccineTypeUI extends UI {
             int key = readIntegerFromConsole("Select a vaccine technology: ");
 
             //DTO creation
-            VaccineTypeDTO dto = new VaccineTypeDTO();
-            dto.code = code;
-            dto.shortDescription = shortDescription;
-            dto.vaccineTechId = key;
+            VaccineTypeDTO dto = new VaccineTypeDTO.Builder()
+                    .withCode(code)
+                    .withShortDescription(shortDescription)
+                    .withVaccineTechDTO(new VaccineTechDTO.Builder()
+                            .withId(key)
+                            .build())
+                    .build();
 
             //Registration
             vaccineTypeController.register(dto);

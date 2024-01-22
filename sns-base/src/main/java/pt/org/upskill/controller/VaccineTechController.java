@@ -15,13 +15,16 @@ public class VaccineTechController implements UIable{
 
     private VaccineTech vaccineTech;
 
+    @Override
     public void register(DTO dto) {
         vaccineTech = vaccineTechRepository.createVaccineTech(dto);
     }
 
+    @Override
     public boolean save() {
         return vaccineTechRepository.save(vaccineTech);
     }
 
+    @Override
     public List<KeyValueDTO> keyValueDTOList() { return vaccineTechRepository.keyValueDTOList(); }
 }

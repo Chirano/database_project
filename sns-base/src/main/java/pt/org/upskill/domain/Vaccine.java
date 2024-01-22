@@ -1,9 +1,6 @@
 package pt.org.upskill.domain;
 
-import pt.org.upskill.dto.VaccineDTO;
-import pt.org.upskill.dto.DTOable;
-
-import java.util.Objects;
+import pt.org.upskill.dto.*;
 
 public class Vaccine implements DTOable {
     private Integer id;
@@ -40,11 +37,22 @@ public class Vaccine implements DTOable {
 
     @Override
     public VaccineDTO toDTO() {
-        VaccineDTO dto = new VaccineDTO();
-        dto.id = id();
-        dto.name = name();
-        dto.vaccineTypeCode = vaccineType().code();
-        dto.brandName = brand().name();;
+        VaccineDTO dto = new VaccineDTO.Builder()
+                .withId(id())
+                .withName(name())
+                .withVaccineTypeDTO(new VaccineTypeDTO.Builder()
+                        .withCode(vaccineType().code())
+                        .withShortDescription(vaccineType().shortDescription())
+                        .withVaccineTechDTO(new VaccineTechDTO.Builder()
+                                .withId(vaccineType().vaccineTech().id())
+                                .withName(vaccineType().vaccineTech().name())
+                                .withDescription(vaccineType().vaccineTech().description())
+                                .build())
+                        .build())
+                .withBrandDTO(new BrandDTO.Builder()
+                        .withName(brand().name())
+                        .build())
+                .build();
         return dto;
     }
 
@@ -55,15 +63,19 @@ public class Vaccine implements DTOable {
         private VaccineType vaccineType;
         private Brand brand;
 
-        public Builder name(final String name) {
+        public Builder withId(final Integer id) {
+            this.id = id;
+            return this;
+        }
+        public Builder withName(final String name) {
             this.name = name;
             return this;
         }
-        public Builder vaccineType(final VaccineType vaccineType) {
+        public Builder withVaccineType(final VaccineType vaccineType) {
             this.vaccineType = vaccineType;
             return this;
         }
-        public Builder brand(final Brand brand) {
+        public Builder withBrand(final Brand brand) {
             this.brand = brand;
             return this;
         }

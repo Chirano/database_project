@@ -22,9 +22,10 @@ public class RegisterVaccineTechUI extends UI {
             String description = readLineFromConsole("Vaccine Technology Description: ");
 
             //DTO creation
-            VaccineTechDTO dto = new VaccineTechDTO();
-            dto.name = name;
-            dto.description = description;
+            VaccineTechDTO dto = new VaccineTechDTO.Builder()
+                    .withName(name)
+                    .withDescription(description)
+                    .build();
 
             //Registration
             vaccineTechController.register(dto);

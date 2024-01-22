@@ -25,7 +25,7 @@ public class BrandRepository implements Persistable {
 
     public Brand createBrand(DTO dto) {
         BrandDTO brandDTO = (BrandDTO) dto;
-        return new Brand(brandDTO.name);
+        return new Brand(brandDTO.name());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class BrandRepository implements Persistable {
         List<KeyValueDTO> dtoList = new ArrayList<>();
         for (Brand item : brandList()) {
             BrandDTO dto = item.toDTO();
-            dtoList.add(new KeyValueDTO(dto.name, ""));
+            dtoList.add(new KeyValueDTO(dto.name(), ""));
         }
         return dtoList;
     }

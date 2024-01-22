@@ -2,7 +2,9 @@ package pt.org.upskill.ui;
 
 import pt.org.upskill.controller.BrandController;
 import pt.org.upskill.controller.VaccineController;
+import pt.org.upskill.dto.BrandDTO;
 import pt.org.upskill.dto.VaccineDTO;
+import pt.org.upskill.dto.VaccineTypeDTO;
 
 import static pt.org.upskill.ui.utils.Utils.readLineFromConsole;
 import static pt.org.upskill.ui.utils.UITools.showKeyValueList;
@@ -27,10 +29,15 @@ public class RegisterVaccineUI extends UI {
             String vaccineName = readLineFromConsole("Vaccine Name: ");
 
             //DTO
-            VaccineDTO dto = new VaccineDTO();
-            dto.name = vaccineName;
-            dto.vaccineTypeCode = vaccineTypeCode;
-            dto.brandName = brandName;
+            VaccineDTO dto = new VaccineDTO.Builder()
+                    .withName(vaccineName)
+                    .withVaccineTypeDTO(new VaccineTypeDTO.Builder()
+                            .withCode(vaccineTypeCode)
+                            .build())
+                    .withBrandDTO(new BrandDTO.Builder()
+                            .withName(brandName)
+                            .build())
+                    .build();
 
             //Registration
             vaccineController.register(dto);

@@ -1,6 +1,9 @@
 package pt.org.upskill.auth;
 
-public class Email {
+import pt.org.upskill.dto.DTOable;
+import pt.org.upskill.dto.EmailDTO;
+
+public class Email implements DTOable {
     private String address;
 
     public Email(String address) throws Exception {
@@ -16,5 +19,10 @@ public class Email {
 
     public String address() {
         return address;
+    }
+
+    @Override
+    public Object toDTO() {
+        return new EmailDTO(address());
     }
 }

@@ -1,6 +1,6 @@
 package pt.org.upskill.domain;
 
-import pt.org.upskill.dto.BrandDTO;
+import pt.org.upskill.dto.VaccineTechDTO;
 import pt.org.upskill.dto.VaccineTypeDTO;
 import pt.org.upskill.dto.DTOable;
 
@@ -27,10 +27,15 @@ public class VaccineType implements DTOable {
 
     @Override
     public VaccineTypeDTO toDTO() {
-        VaccineTypeDTO dto = new VaccineTypeDTO();
-        dto.code = code();
-        dto.shortDescription = shortDescription();
-        dto.vaccineTechId = vaccineTech().id();
+        VaccineTypeDTO dto = new VaccineTypeDTO.Builder()
+                .withCode(code())
+                .withShortDescription(shortDescription())
+                .withVaccineTechDTO(new VaccineTechDTO.Builder()
+                        .withId(vaccineTech().id())
+                        .withName(vaccineTech().name())
+                        .withDescription(vaccineTech().description())
+                        .build())
+                .build();
         return dto;
     }
 

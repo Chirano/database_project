@@ -20,7 +20,7 @@ public class VaccineTypeRepository implements Persistable {
     public VaccineType createVaccineType(DTO dto) {
         VaccineTypeDTO vaccineTypeDTO = (VaccineTypeDTO) dto;
         VaccineTechRepository vaccineTechRepository = Repositories.getInstance().vaccineTechRepository();
-        return new VaccineType(vaccineTypeDTO.code, vaccineTypeDTO.shortDescription, vaccineTechRepository.getById(vaccineTypeDTO.vaccineTechId));
+        return new VaccineType(vaccineTypeDTO.code(), vaccineTypeDTO.shortDescription(), vaccineTechRepository.getById(vaccineTypeDTO.vaccineTechDTO().id()));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class VaccineTypeRepository implements Persistable {
         List<KeyValueDTO> dtoList = new ArrayList<>();
         for (VaccineType item : vaccineTypeList()) {
             VaccineTypeDTO dto = item.toDTO();
-            dtoList.add(new KeyValueDTO(dto.code, dto.shortDescription + " - Technology: " + dto.vaccineTechId));
+            dtoList.add(new KeyValueDTO(dto.code(), dto.shortDescription() + " - Technology: " + dto.vaccineTechDTO().id()));
         }
         return dtoList;
     }

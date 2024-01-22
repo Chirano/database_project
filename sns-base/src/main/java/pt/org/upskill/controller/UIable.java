@@ -8,6 +8,5 @@ import java.util.List;
 public interface UIable {
     void register(DTO dto) throws Exception;
     boolean save();
-
     List<KeyValueDTO> keyValueDTOList();
 }

@@ -1,7 +1,26 @@
 package pt.org.upskill.dto;
 
-import pt.org.upskill.domain.Brand;
-
 public class BrandDTO implements DTO {
-    public String name;
+    private String name;
+
+    public String name() {
+        return this.name;
+    }
+
+    private BrandDTO(final BrandDTO.Builder builder) {
+        this.name = builder.name;;
+    }
+
+    public static class Builder {
+        private String name;
+
+        public BrandDTO.Builder withName(final String name) {
+            this.name = name;
+            return this;
+        }
+
+        public BrandDTO build() {
+            return new BrandDTO(this);
+        }
+    }
 }

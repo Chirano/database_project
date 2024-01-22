@@ -3,14 +3,10 @@ package pt.org.upskill.repository;
  * @author Nuno Castro anc@isep.ipp.pt
  */
 
-import pt.org.upskill.domain.Brand;
 import pt.org.upskill.domain.Vaccine;
-import pt.org.upskill.domain.VaccineTech;
-import pt.org.upskill.domain.VaccineType;
 import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.dto.VaccineDTO;
-import pt.org.upskill.dto.VaccineTechDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +49,10 @@ public class VaccineRepository implements Persistable {
         VaccineTypeRepository vaccineTypeRepository = Repositories.getInstance().vaccineTypeRepository();
         BrandRepository brandRepository = Repositories.getInstance().brandRepository();
         return new Vaccine.Builder()
-                .name(vaccineDTO.name)
-                .vaccineType(vaccineTypeRepository.getByCode(vaccineDTO.vaccineTypeCode))
-                .brand(brandRepository.getByName(vaccineDTO.brandName))
+                .withId(nextId())
+                .withName(vaccineDTO.name())
+                .withVaccineType(vaccineTypeRepository.getByCode(vaccineDTO.vaccineTypeDTO().code()))
+                .withBrand(brandRepository.getByName(vaccineDTO.brandDTO().name()))
                 .build();
     }
 
@@ -85,7 +82,7 @@ public class VaccineRepository implements Persistable {
         List<KeyValueDTO> dtoList = new ArrayList<>();
         for (Vaccine item : vaccineList()) {
             VaccineDTO dto = item.toDTO();
-            dtoList.add(new KeyValueDTO(dto.id.toString(), dto.name + " -  Type: " + dto.vaccineTypeCode));
+            dtoList.add(new KeyValueDTO(dto.id().toString(), dto.name() + " -  Type: " + dto.vaccineTypeDTO().code()));
         }
         return dtoList;
     }

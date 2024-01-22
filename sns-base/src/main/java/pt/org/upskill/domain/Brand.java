@@ -16,8 +16,9 @@ public class Brand implements DTOable {
 
     @Override
     public BrandDTO toDTO() {
-        BrandDTO dto = new BrandDTO();
-        dto.name = name();
+        BrandDTO dto = new BrandDTO.Builder()
+                .withName(name())
+                .build();
         return dto;
     }
 }
