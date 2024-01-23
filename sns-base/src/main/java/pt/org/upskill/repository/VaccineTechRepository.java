@@ -11,7 +11,7 @@ import pt.org.upskill.dto.VaccineTechDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VaccineTechRepository implements Persistable {
+public class VaccineTechRepository implements PersistableRepo {
 
     public VaccineTechRepository() {}
 

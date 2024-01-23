@@ -3,17 +3,15 @@ package pt.org.upskill.repository;
  * @author Nuno Castro anc@isep.ipp.pt
  */
 
-import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.domain.VaccineType;
 import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
-import pt.org.upskill.dto.VaccineTechDTO;
 import pt.org.upskill.dto.VaccineTypeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VaccineTypeRepository implements Persistable {
+public class VaccineTypeRepository implements PersistableRepo {
 
     private List<VaccineType> vaccineTypeList = new ArrayList<VaccineType>();
 

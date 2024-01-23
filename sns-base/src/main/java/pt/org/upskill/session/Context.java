@@ -4,6 +4,7 @@ package pt.org.upskill.session;
  */
 
 import pt.org.upskill.auth.User;
+import pt.org.upskill.db.ConnectionFactory;
 import pt.org.upskill.ui.menu.Drawable;
 import pt.org.upskill.ui.menu.Menu;
 
@@ -55,5 +56,12 @@ public class Context {
             return session.user();
         }
         return null;
+    }
+
+    //Connection Factory
+    private static ConnectionFactory cf = new ConnectionFactory();
+
+    public static ConnectionFactory getConnectionFactory() {
+        return cf;
     }
 }

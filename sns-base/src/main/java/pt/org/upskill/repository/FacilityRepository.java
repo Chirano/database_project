@@ -4,13 +4,19 @@ package pt.org.upskill.repository;
  */
 
 import pt.org.upskill.auth.Email;
+import pt.org.upskill.db.ConnectionFactory;
+import pt.org.upskill.db.DatabaseConnection;
+import pt.org.upskill.db.FacilityDB;
 import pt.org.upskill.domain.*;
 import pt.org.upskill.dto.*;
+import pt.org.upskill.session.Context;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FacilityRepository implements Persistable {
+public class FacilityRepository implements PersistableRepo {
 
     public FacilityRepository() {}
 
@@ -63,22 +69,66 @@ public class FacilityRepository implements Persistable {
 
     @Override
     public boolean save(Object object) {
+        /*
+        //Version without database persistence
         Facility facility = (Facility) object;
         if (validateSave(facility)) {
             facilityList.add(facility);
             return true;
         }
         return false;
+         */
+        ConnectionFactory cf = Context.getConnectionFactory();
+        DatabaseConnection dbc = cf.getDatabaseConnection();
+        Connection conn = dbc.getConnection();
+        //
+        try {
+            conn.setAutoCommit(false);
+            //
+            FacilityDB facilityDB = new FacilityDB();
+            facilityDB.save(conn, (Facility) object);
+            //
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        }
     }
 
     @Override
     public boolean delete(Object object) {
-        Facility facility = (Facility) object;
+        /*Facility facility = (Facility) object;
+        //Version without database persistence
         if (validateDelete(facility)) {
             facilityList.remove(facility);
-            return true;
         }
         return false;
+         */
+        ConnectionFactory cf = Context.getConnectionFactory();
+        DatabaseConnection dbc = cf.getDatabaseConnection();
+        Connection conn = dbc.getConnection();
+        //
+        try {
+            conn.setAutoCommit(false);
+            //
+            FacilityDB facilityDB = new FacilityDB();
+            facilityDB.delete(conn, (Facility) object);
+            //
+            conn.commit();
+            return true;
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        }
     }
 
     public List<Facility> facilityList() {

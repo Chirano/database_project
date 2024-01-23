@@ -64,7 +64,7 @@ public class Bootstrap implements Runnable {
         FacilityRepository facilityRepository = Repositories.getInstance().facilityRepository();
 
         try {
-            Facility facility = new Facility.Builder()
+            Facility f1 = new Facility.Builder()
                     .withId(1)
                     .withName("Centro de Saúde de Amarante")
                     .withAddress(new Address("Rua X", "4600-011", "Amarante"))
@@ -74,7 +74,19 @@ public class Bootstrap implements Runnable {
                     .withClosingingHour(LocalTime.of(19,30))
                     .withMaxVaccinesPerHour(120)
                     .build();
-            facilityRepository.save(facility);
+            Facility f2 = new Facility.Builder()
+                    .withId(2)
+                    .withName("Centro de Saúde do Porto")
+                    .withAddress(new Address("Rua da saúde", "4000-311", "Porto"))
+                    .build();
+            Facility f3 = new Facility.Builder()
+                    .withId(3)
+                    .withName("Centro de Saúde de Braga")
+                    .build();
+            facilityRepository.save(f1);
+            facilityRepository.save(f2);
+            facilityRepository.save(f3);
+            facilityRepository.delete(f2);
         } catch (Exception e) {
             e.printStackTrace();
         }

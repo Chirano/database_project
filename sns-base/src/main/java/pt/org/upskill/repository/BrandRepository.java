@@ -11,7 +11,7 @@ import pt.org.upskill.dto.KeyValueDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandRepository implements Persistable {
+public class BrandRepository implements PersistableRepo {
 
     public BrandRepository() {}
 
