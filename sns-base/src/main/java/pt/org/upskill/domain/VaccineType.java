@@ -4,7 +4,7 @@ import pt.org.upskill.dto.VaccineTechDTO;
 import pt.org.upskill.dto.VaccineTypeDTO;
 import pt.org.upskill.dto.DTOable;
 
-public class VaccineType implements DTOable {
+public class VaccineType implements DTOable<VaccineTypeDTO> {
     private String code;
     private String shortDescription;
     private VaccineTech vaccineTech;

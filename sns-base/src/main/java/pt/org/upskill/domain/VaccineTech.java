@@ -3,7 +3,7 @@ package pt.org.upskill.domain;
 import pt.org.upskill.dto.DTOable;
 import pt.org.upskill.dto.VaccineTechDTO;
 
-public class VaccineTech implements DTOable {
+public class VaccineTech implements DTOable<VaccineTechDTO> {
     private Integer id;
     private String name;
     private String description;

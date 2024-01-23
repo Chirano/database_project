@@ -5,7 +5,7 @@ import pt.org.upskill.dto.*;
 
 import java.time.LocalTime;
 
-public class Facility implements DTOable {
+public class Facility implements DTOable<FacilityDTO> {
     private Integer id;
     private String name;
     private Address address;

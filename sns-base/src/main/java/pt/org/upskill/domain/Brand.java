@@ -3,7 +3,7 @@ package pt.org.upskill.domain;
 import pt.org.upskill.dto.BrandDTO;
 import pt.org.upskill.dto.DTOable;
 
-public class Brand implements DTOable {
+public class Brand implements DTOable<BrandDTO> {
     private String name;
 
     public Brand(String name) {
