@@ -11,22 +11,19 @@ import pt.org.upskill.repository.VaccineRepository;
 
 import java.util.List;
 
-public class VaccineController implements UIable {
+public class VaccineController  {
     VaccineRepository vaccineRepository = Repositories.getInstance().vaccineRepository();
 
     private Vaccine vaccine;
 
-    @Override
-    public void register(DTO dto) {
-        vaccine = vaccineRepository.createVaccine(dto);
-    }
+    //public void register(DTO dto) {
+     //   vaccine = vaccineRepository.createVaccine(dto);
+    //}
 
-    @Override
     public boolean save() {
         return vaccineRepository.save(vaccine);
     }
 
-    @Override
     public List<KeyValueDTO> keyValueDTOList() { return vaccineRepository.keyValueDTOList(); }
 
 }

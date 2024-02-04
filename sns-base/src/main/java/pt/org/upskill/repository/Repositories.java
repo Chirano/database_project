@@ -27,10 +27,14 @@ public class Repositories {
     VaccineRepository vaccineRepository = new VaccineRepository();
     BrandRepository brandRepository = new BrandRepository();
     FacilityRepository facilityRepository = new FacilityRepository();
+    SNSUserRepository snsUserRepository = new SNSUserRepository();
+    AppointmentRepository appointmentRepository = new AppointmentRepository();
 
     public VaccineTechRepository vaccineTechRepository() {return vaccineTechRepository;}
     public VaccineTypeRepository vaccineTypeRepository() {return vaccineTypeRepository;}
     public VaccineRepository vaccineRepository() {return vaccineRepository;}
     public BrandRepository brandRepository() {return brandRepository;}
     public FacilityRepository facilityRepository() {return facilityRepository;}
+    public SNSUserRepository snsUserRepository() {return snsUserRepository;}
+    public AppointmentRepository appointmentRepository() {return appointmentRepository;}
 }

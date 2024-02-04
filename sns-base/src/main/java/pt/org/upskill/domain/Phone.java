@@ -6,7 +6,7 @@ import pt.org.upskill.dto.PhoneDTO;
 public class Phone implements DTOable<PhoneDTO> {
     private String phoneNumber;
 
-    public String phoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
     public Phone(String phoneNumber) {
@@ -15,6 +15,9 @@ public class Phone implements DTOable<PhoneDTO> {
 
     @Override
     public PhoneDTO toDTO() {
-        return new PhoneDTO(phoneNumber());
+        PhoneDTO dto = new PhoneDTO.Builder()
+                .withPhoneNumberDTO(getPhoneNumber())
+                .build();
+        return dto;
     }
 }

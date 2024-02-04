@@ -11,7 +11,7 @@ import pt.org.upskill.dto.KeyValueDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandRepository implements PersistableRepo {
+public class BrandRepository   {
 
     public BrandRepository() {}
 
@@ -28,7 +28,6 @@ public class BrandRepository implements PersistableRepo {
         return new Brand(brandDTO.name());
     }
 
-    @Override
     public boolean save(Object object) {
         if (validateSave(object)) {
             brandList.add((Brand) object);
@@ -37,7 +36,6 @@ public class BrandRepository implements PersistableRepo {
         return false;
     }
 
-    @Override
     public boolean delete(Object object) {
         if (validateDelete(object)) {
             brandList.remove(object);

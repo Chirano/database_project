@@ -13,8 +13,7 @@ public class VaccineTech implements DTOable<VaccineTechDTO> {
         this.name = name;
         this.description = description;
     }
-
-    public int id() {
+     public Integer id() {
         return id;
     }
     public String name() {

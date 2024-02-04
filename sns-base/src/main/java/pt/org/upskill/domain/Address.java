@@ -17,11 +17,20 @@ public class Address implements DTOable<AddressDTO> {
     public String cityName() {
         return this.cityName;
     }
-
-    public Address(String streetName, String postalCode, String cityName) {
+    public Address(String streetName, String cityName, String postalCode){
         this.streetName = streetName;
-        this.postalCode = postalCode;
         this.cityName = cityName;
+        this.postalCode = postalCode;
+    }
+
+    public Address (String address){
+        this.streetName = address;
+    }
+
+    public Address(final Builder builder) {
+        this.cityName = builder.cityname;
+        this.postalCode = builder.postalcode;
+        this.streetName = builder.streetnanme;
     }
 
     @Override
@@ -37,5 +46,29 @@ public class Address implements DTOable<AddressDTO> {
             builder.withCityName(cityName());
         }
         return builder.build();
+    }
+
+    public static class Builder {
+
+        private String cityname;
+        private String streetnanme;
+        private String postalcode;
+
+        public Address.Builder withCityName(final String cityname) {
+            this.cityname = cityname;
+            return this;
+        }
+        public Address.Builder withStreetName(final String streetname) {
+            this.streetnanme = streetname;
+            return this;
+        }
+        public Address.Builder withPostalCode(final String postalCode) {
+            this.postalcode = postalCode;
+            return this;
+        }
+
+        public Address build() {
+            return new Address(this);
+        }
     }
 }

@@ -18,7 +18,7 @@ public class VaccineTypeDTO implements DTO {
 
     private VaccineTypeDTO(final VaccineTypeDTO.Builder builder) {
         this.code = builder.code;
-        this.shortDescription = builder.shortDescription;;
+        this.shortDescription = builder.shortDescription;
         this.vaccineTechDTO = builder.vaccineTechDTO;
     }
 

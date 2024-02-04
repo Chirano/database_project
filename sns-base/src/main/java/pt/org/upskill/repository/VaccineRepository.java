@@ -11,7 +11,7 @@ import pt.org.upskill.dto.VaccineDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VaccineRepository implements PersistableRepo {
+public class VaccineRepository {
 
     public VaccineRepository() {}
 
@@ -44,19 +44,19 @@ public class VaccineRepository implements PersistableRepo {
         return true;
     }
 
-    public Vaccine createVaccine(DTO dto) {
-        VaccineDTO vaccineDTO = (VaccineDTO) dto;
-        VaccineTypeRepository vaccineTypeRepository = Repositories.getInstance().vaccineTypeRepository();
-        BrandRepository brandRepository = Repositories.getInstance().brandRepository();
-        return new Vaccine.Builder()
-                .withId(nextId())
-                .withName(vaccineDTO.name())
-                .withVaccineType(vaccineTypeRepository.getByCode(vaccineDTO.vaccineTypeDTO().code()))
-                .withBrand(brandRepository.getByName(vaccineDTO.brandDTO().name()))
-                .build();
-    }
+//    public Vaccine createVaccine(DTO dto) {
+//        VaccineDTO vaccineDTO = (VaccineDTO) dto;
+//        VaccineTypeRepository vaccineTypeRepository = Repositories.getInstance().vaccineTypeRepository();
+//        BrandRepository brandRepository = Repositories.getInstance().brandRepository();
+//        return new Vaccine.Builder()
+//                .withId(nextId())
+//                .withName(vaccineDTO.name())
+//                .withVaccineType(vaccineTypeRepository.getByCode(vaccineDTO.vaccineTypeDTO().code()))
+//                .withBrand(brandRepository.getByName(vaccineDTO.brandDTO().name()))
+//                .build();
+//    }
 
-    @Override
+
     public boolean save(Object object) {
         if (validateSave(object)) {
             vaccineList.add((Vaccine) object);
@@ -65,7 +65,7 @@ public class VaccineRepository implements PersistableRepo {
         return false;
     }
 
-    @Override
+
     public boolean delete(Object object) {
         if (validateDelete(object)) {
             vaccineList.remove(object);

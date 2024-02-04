@@ -5,6 +5,7 @@ package pt.org.upskill.session;
 
 import pt.org.upskill.auth.User;
 import pt.org.upskill.db.ConnectionFactory;
+import pt.org.upskill.domain.Facility;
 import pt.org.upskill.ui.menu.Drawable;
 import pt.org.upskill.ui.menu.Menu;
 
@@ -54,6 +55,12 @@ public class Context {
     public User userLoggedIn() {
         if (session() != null) {
             return session.user();
+        }
+        return null;
+    }
+    public Facility facilityLoggedIn(){
+        if(session() != null){
+            return session.facility();
         }
         return null;
     }

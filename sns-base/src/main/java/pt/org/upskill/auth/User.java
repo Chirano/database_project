@@ -40,7 +40,7 @@ public class User {
         if (role == null) {
             return false;
         }
-        return this.role.name().equalsIgnoreCase(role.name());
+        return this.role.getName().equalsIgnoreCase(role.getName());
     }
 
     public boolean hasPassword(String password) {

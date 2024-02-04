@@ -3,79 +3,96 @@ package pt.org.upskill.repository;
  * @author Nuno Castro anc@isep.ipp.pt
  */
 
+import pt.org.upskill.db.VaccineTechDB;
 import pt.org.upskill.domain.VaccineTech;
 import pt.org.upskill.dto.DTO;
 import pt.org.upskill.dto.KeyValueDTO;
 import pt.org.upskill.dto.VaccineTechDTO;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class VaccineTechRepository implements PersistableRepo {
-
-    public VaccineTechRepository() {}
-
-    private List<VaccineTech> vaccineTechList = new ArrayList<VaccineTech>();
-
-    public int nextId() {
-        int maxId = 0;
-        for (VaccineTech vaccineTech : vaccineTechList) {
-            if (vaccineTech.id() > maxId) {
-                maxId = vaccineTech.id();
-            };
-        }
-        return maxId+1;
-    }
-
-    public VaccineTech getById(int id) {
-        for (VaccineTech vaccineTech : vaccineTechList) {
-            if (vaccineTech.id() == id) {
-                return vaccineTech;
-            };
-        }
-        return null;
-    }
-
-    private Boolean validateSave(Object object) {
-        return true;
-    }
-
-    private Boolean validateDelete(Object object) {
-        return true;
-    }
+public class VaccineTechRepository extends JdbcRepository implements PersistableRepo<VaccineTech, Integer, String> {
 
     public VaccineTech createVaccineTech(DTO dto) {
         VaccineTechDTO vaccineTechDTO = (VaccineTechDTO) dto;
-        return new VaccineTech(nextId(), vaccineTechDTO.name(), vaccineTechDTO.description());
-    }
-
-    @Override
-    public boolean save(Object object) {
-        if (validateSave(object)) {
-            vaccineTechList.add((VaccineTech) object);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean delete(Object object) {
-        if (validateDelete(object)) {
-            vaccineTechList.remove(object);
-            return true;
-        }return false;
-    }
-
-    public List<VaccineTech> vaccineTechList() {
-        return vaccineTechList;
+        return new VaccineTech(vaccineTechDTO.id(), vaccineTechDTO.name(), vaccineTechDTO.description());
     }
 
     public List<KeyValueDTO> keyValueDTOList() {
         List<KeyValueDTO> dtoList = new ArrayList<>();
-        for (VaccineTech item : vaccineTechList()) {
+        for (VaccineTech item : getAll()) {
             VaccineTechDTO dto = item.toDTO();
             dtoList.add(new KeyValueDTO(dto.id().toString(), dto.name()));
         }
         return dtoList;
     }
+
+    @Override
+    public boolean save(VaccineTech object) {
+        try {
+            VaccineTechDB vaccineTechDB = new VaccineTechDB();
+            vaccineTechDB.save(conn, object);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(VaccineTech object) {
+        try {
+            VaccineTechDB vaccineTechDB = new VaccineTechDB();
+            vaccineTechDB.delete(conn, object);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public VaccineTech getById(Integer id) {
+        return new VaccineTechDB().getById(conn, id);
+    }
+
+    @Override
+    public VaccineTech getByBusinessId(String businessId) {
+        return new VaccineTechDB().getByBusinessId(conn, businessId);
+    }
+
+    @Override
+    public List<VaccineTech> getAll() {
+        try {
+            List<VaccineTech> list = new ArrayList<>();
+            String sqlCmd = "select * from VaccineTech";
+            try (PreparedStatement ps = conn.prepareStatement(sqlCmd)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(buildFromResultSet(rs));
+                }
+                return list;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VaccineTechRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    @Override
+    public VaccineTech buildFromResultSet(ResultSet resultSet) {
+        try {
+            return new VaccineTech(resultSet.getInt("id")
+                    , resultSet.getString("name")
+                    , resultSet.getString("description"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

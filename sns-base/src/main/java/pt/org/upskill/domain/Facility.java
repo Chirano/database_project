@@ -48,7 +48,7 @@ public class Facility implements DTOable<FacilityDTO> {
         return this.maxVaccinesPerHour;
     }
 
-    private Facility(final Facility.Builder builder) {
+    public Facility(final Facility.Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.address = builder.address;
@@ -59,6 +59,14 @@ public class Facility implements DTOable<FacilityDTO> {
         this.openingHour = builder.openingHour;
         this.closingHour = builder.closingHour;
         this.maxVaccinesPerHour = builder.maxVaccinesPerHour;
+    }
+
+    public Facility(Integer id, String name){
+        this.id = id;
+        this.name = name;
+    }
+    public Facility(Integer id){
+        this.id = id;
     }
 
     public static class Builder {

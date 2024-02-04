@@ -1,5 +1,4 @@
 package pt.org.upskill.db;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +7,7 @@ import java.util.List;
  */
 public class ConnectionFactory {
     //This is the size of the connection pool.
-    private final Integer connectionPoolCount = 2;
+    private final Integer connectionPoolCount = 1;
     //
     private Integer connectionPoolRequest = 0;
     private static ConnectionFactory cf;
@@ -29,7 +28,7 @@ public class ConnectionFactory {
         if (connectionPoolRequest > dbConnectionList.size()) {
             c = new DatabaseConnection(
                     "jdbc:oracle:thin:@upskill.dnsfor.me:1521/freepdb1",
-                    "anc",
+                    "upskill02",
                     "qwerty");
             dbConnectionList.add(c);
         }

@@ -41,7 +41,7 @@ public class RegisterVaccineUI extends UI {
                     .build();
 
             //Registration
-            vaccineController.register(dto);
+            //vaccineController.register(dto);
 
             //Confirmation
             vaccineController.save();

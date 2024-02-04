@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,7 +59,6 @@ public class Utils {
     }
 
     static public Date readDateFromConsole(String prompt) {
-        do {
             try {
                 String strDate = readLineFromConsole(prompt);
 
@@ -68,8 +69,28 @@ public class Utils {
                 return date;
             } catch (ParseException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
-        } while (true);
+    }
+
+    static public LocalTime readHourFromConsole(String prompt)
+    {
+        try {
+            System.out.print(prompt);
+
+            InputStreamReader converter = new InputStreamReader(System.in);
+            BufferedReader in = new BufferedReader(converter);
+
+            String strHour = in.readLine();
+            String pattern = "HH:mm";
+
+            return LocalTime.parse(strHour, DateTimeFormatter.ofPattern(pattern) );
+        } catch (Exception ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Invalid input. Please enter the time in HH:mm format.");
+            return null;
+        }
+
     }
 
     static public boolean confirm(String message) {

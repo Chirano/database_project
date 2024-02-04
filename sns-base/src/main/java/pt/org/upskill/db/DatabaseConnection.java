@@ -5,7 +5,6 @@ package pt.org.upskill.db;
  */
 
 import oracle.jdbc.pool.OracleDataSource;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
